@@ -1,4 +1,4 @@
-import { addStep, getSteps, getBoilerStar } from '../state.js';
+import { addStep, getSteps, getBoilerStar, setStepAttackId } from '../state.js';
 import {
   getBoilerPhaseFromBoilerRoundIndex,
   getBoilerRoundIndexFromStepIndex
