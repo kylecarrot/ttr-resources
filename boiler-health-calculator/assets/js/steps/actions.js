@@ -16,6 +16,7 @@ import {
   renderBoilerRoundAttackChoiceBoxesForToon,
   renderStepsGroup,
 } from './render.js';
+import { renderBoilerHealthBar } from '../boiler/health/render.js';
 import { updateAttacksUrl } from '../url.js';
 
 
@@ -188,6 +189,8 @@ function setCurrentAttack(attackId) {
     renderBoilerRoundAttackChoiceBoxesForToon(currentToon);
   }
 
+  renderBoilerHealthBar();
+
   updateAttacksUrl();
 
   goToNextAttackChoiceBox(); // Handles re-rendering
@@ -205,6 +208,8 @@ function clearAttack() {
   if (currentStep === 0) {
     renderBoilerRoundAttackChoiceBoxesForToon(currentToon);
   }
+
+  renderBoilerHealthBar();
 
   updateAttacksUrl();
 }
