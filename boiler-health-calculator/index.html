@@ -1,24 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Boiler Health Calculator</title>
 
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/boiler-panel.css">
+  <link rel="stylesheet" href="assets/css/attack-grid.css">
+  <link rel="stylesheet" href="assets/css/steps-panel.css">
   <script type="module" src="assets/js/main.js" defer></script>
 </head>
 
 <body>
 
   <div class="app">
-    <div class="steps-panel">
-
-      <div class="organic-selections-container"></div>
-
-      <div class="boiler-rounds-container"></div>
-
-    </div>
+    <div class="steps-panel"></div>
 
     <div class="main-panel">
 
@@ -26,21 +26,15 @@
         <div class="boiler-panel">
 
           <div class="boiler-health">
-            <div class="health-background-layer"></div>
-            <div class="health-active-layer"></div>
-            <span class="health-number"></span>
+            <div class="boiler-health-layer background"></div>
+            <div class="boiler-health-layer active"></div>
+            <span class="boiler-health-number"></span>
           </div>
 
           <div class="boiler-star">
-            <div class="star-select"></div>
+            <div class="boiler-star-selector"></div>
           </div>
 
-        </div>
-      </div>
-
-      <div class="status-panel-container">
-        <div class="status-panel">
-          <span class="status-text">Select Organic Gags</span>
         </div>
       </div>
 
@@ -57,4 +51,5 @@
   </div>
 
 </body>
+
 </html>

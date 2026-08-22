@@ -1,46 +1,48 @@
-import { initBoilerPanel } from './boiler-panel/index.js';
+import { state, getBoilerStar } from './state.js';
+import { loadStateFromUrl, updateBoilerStarUrl } from './url.js';
+import { attackData } from './attacks/index.js';
+import { applyBoilerStar, handleBoilerStarSelect, handleAttackSelection } from './actions.js';
+import { initBoilerStarSelector } from './boiler/star/index.js';
+import { renderAttackGrid } from './attacks/index.js';
+import {
+  initSteps,
+  goToPreviousAttackChoiceBox,
+  goToNextAttackChoiceBox,
+  goToPreviousStep,
+  goToNextStep,
+  clearAttack,
+} from './steps/index.js';
+import { initKeyboardControls } from './keyboard-controls.js';
 
 
-const state = {
-  isBoilerInitialized: false,  // boiler is initialized when a star is chosen
-  computedLayerHealths: [],  // based on current star, updated on star select
-  boilerStar: null,
-
-  steps: [  // Navigatable steps
-    // First 2 steps:
-    /* {
-      type: 'organic-selection',
-    },
-    {
-      type: 'boiler-round',
-    } */
-  ],
-  currentToon: 0,
-  currentStep: 0,
-};
+init();
 
 
-init(state);
+function init() {
+  const { boilerStar: starFromUrl } = loadStateFromUrl();
 
+  console.log(`starFromUrl ${starFromUrl}`);
 
-function init(state) {
-  initBoilerPanel();
-  // populateAttackGrid();
+  initBoilerStarSelector(handleBoilerStarSelect);
+
+  applyBoilerStar(getBoilerStar());
   
-  // document.addEventListener('keydown', ({ key }) => handleKeyboardInput(key));
+  renderAttackGrid(attackData, handleAttackSelection);
 
-  // const starSelector = document.querySelector('.star-select');
+  initSteps();
 
-  // starSelector.addEventListener('change', (e) => {
-    // state.boilerStar = e.target.value;
+  initKeyboardControls({
+    toonLeft: goToPreviousAttackChoiceBox,
+    toonRight: goToNextAttackChoiceBox,
+    stepUp: goToPreviousStep,
+    stepDown: goToNextStep,
+    clearAttack,
+  });
 
-    // computeLayerHealths();
-    // state.isBoilerInitialized = true;
-    // renderHealthBar(state);
-  // });
+  if (starFromUrl === null) {
+    updateBoilerStarUrl();
+  }
 
-  // addStep(0);  // Add organic selections step
-  // addStep(1);  // Add first boiler round step
-
-  // renderSteps(state);
+  console.log(state);
 }
+

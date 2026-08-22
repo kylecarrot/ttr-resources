@@ -1,0 +1,105 @@
+.boiler-panel-container {
+  width: 100%;
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+}
+
+.boiler-panel {
+  --panel-border: 1cqw;
+
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+
+  container-type: inline-size;
+}
+
+.boiler-health {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 8 / 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: var(--panel-border) solid black;
+}
+
+.boiler-health-layer.background {
+  position: absolute;
+  inset: 0;
+}
+
+.boiler-health-layer.active {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: var(--fill-percentage);
+}
+
+.boiler-health-layer[data-color='green'] {
+  background-color: #8cd47e;
+}
+
+.boiler-health-layer[data-color='yellow'] {
+  background-color: #f8d66d;
+}
+
+.boiler-health-layer[data-color='orange'] {
+  background-color: #ffb54c;
+}
+
+.boiler-health-layer[data-color='red'] {
+  background-color: #ff6961;
+}
+
+.boiler-health-layer[data-color='empty'] {
+  background-color: #dedede;
+}
+
+.boiler-health-number {
+  position: relative;
+  z-index: 1;
+  font-size: 4cqw;
+}
+
+.boiler-star {
+  width: 100%;
+  border: var(--panel-border) solid black;
+  border-top: none;
+
+  container-type: inline-size;
+}
+
+.boiler-star-selector {
+  display: flex;
+  gap: 0.8cqw;
+
+  padding: 0.25cqw 0.75cqw;
+}
+
+.boiler-star-selector .star {
+  appearance: none;
+  background: none;
+  border: none;
+
+  padding: 0.25cqw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 4cqw;
+  line-height: 1;
+  cursor: pointer;
+
+  color: gainsboro;
+}
+
+.boiler-star-selector .star.filled {
+  color: black;
+}

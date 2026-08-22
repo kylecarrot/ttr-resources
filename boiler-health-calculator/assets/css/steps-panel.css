@@ -1,0 +1,76 @@
+.steps-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1cqw;
+}
+
+.steps-panel .steps-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, auto);
+  grid-auto-flow: column;
+  column-gap: 4%;
+}
+
+.steps-panel .step {
+  display: flex;
+  gap: 1cqw;
+  padding: 0.5cqw 0.5cqw;
+
+  border: 0.3cqw solid;
+}
+
+.step[data-step-type='organic-selections'] {
+  border-color: #33BA65;
+}
+
+.step[data-step-type='boiler-round'][data-boiler-phase='neutral'] {
+  border-color: #5B616B;
+}
+
+.step[data-step-type='boiler-round'][data-boiler-phase='fired-up'] {
+  border-color: #e77070;
+}
+
+.step[data-step-type='boiler-round'][data-boiler-phase='defense'] {
+  border-color: #9494d2;
+}
+
+.attack-choice-box {
+  position: relative; /* for position absolute on organic-indicator */
+  aspect-ratio: 7 / 5;
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-style: solid;
+  border-width: 0.2cqw;
+}
+
+.attack-choice-box.active {
+  border-color: deepskyblue;
+}
+
+.attack-choice-box > img {
+  width: 40%;
+  height: auto;
+}
+
+.attack-choice-box .organic-indicator {
+  display: none;
+  position: absolute;
+
+  top: 6%;
+  right: 6%;
+  width: 16%;
+  aspect-ratio: 1 / 1;
+
+  border-radius: 50%;
+  background-color: mediumseagreen;
+}
+
+.attack-choice-box .organic-indicator.active {
+  display: block;
+}
