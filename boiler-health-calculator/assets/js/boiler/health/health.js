@@ -22,15 +22,15 @@ const HEALTH_BAR_LAYERS = [
 ];
 
 
-const HEALTH_BAR_LAYER_HEALTHS_BY_STAR = {};
+const HEALTH_BAR_LAYER_HEALTHS = {};
 
 for (const boilerStar of Object.keys(boilerStars)) {
-  HEALTH_BAR_LAYER_HEALTHS_BY_STAR[boilerStar] = calculateHealthBarLayerHealths(boilerStar);
+  HEALTH_BAR_LAYER_HEALTHS[boilerStar] = calculateHealthBarLayerHealths(boilerStar);
 }
 
 
 function getHealthBarLayerHealths(boilerStar) {
-  return HEALTH_BAR_LAYER_HEALTHS_BY_STAR[boilerStar];
+  return HEALTH_BAR_LAYER_HEALTHS[boilerStar];
 }
 
 
@@ -93,4 +93,13 @@ function getHealthBarDisplayState(totalDamage, boilerStar) {
 }
 
 
-export { getHealthBarDisplayState };
+function getRedLayerStartDamage(boilerStar) {
+  const layerHealths = getHealthBarLayerHealths(boilerStar);
+
+  return layerHealths
+    .slice(0, -1)
+    .reduce((total, layerHealth) => total + layerHealth, 0);
+}
+
+
+export { getHealthBarDisplayState, getRedLayerStartDamage };

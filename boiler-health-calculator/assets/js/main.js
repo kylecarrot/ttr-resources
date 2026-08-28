@@ -1,4 +1,4 @@
-import { state, getBoilerStar } from './state.js';
+import { getBoilerStar } from './state.js';
 import { loadStateFromUrl, updateBoilerStarUrl } from './url.js';
 import { attackData } from './attacks/index.js';
 import { applyBoilerStar, handleBoilerStarSelect, handleAttackSelection } from './actions.js';
@@ -21,8 +21,6 @@ init();
 function init() {
   const { boilerStar: starFromUrl } = loadStateFromUrl();
 
-  console.log(`starFromUrl ${starFromUrl}`);
-
   initBoilerStarSelector(handleBoilerStarSelect);
 
   applyBoilerStar(getBoilerStar());
@@ -43,6 +41,5 @@ function init() {
     updateBoilerStarUrl();
   }
 
-  console.log(state);
 }
 

@@ -1,5 +1,19 @@
-import { ensureInitialSteps, extendStepsToGroupBoundary, getStepTypeFromIndex } from './steps.js';
-import { initStepsRenderer, renderSteps, renderStepsGroup, renderStep } from './render.js';
+import {
+  ensureInitialStepsGroups,
+  ensureNextStepsGroupForLoadedAttacks,
+  getStepTypeFromIndex,
+  prepareStepsForGroupingChange,
+} from './steps.js';
+
+import {
+  initStepsRenderer,
+  renderStepsGroups,
+  renderAllStepsGroups,
+  renderStepsGroup,
+  renderStep,
+  rerenderRevealedStepsGroups,
+} from './render.js';
+
 import {
   goToStepAndAttackChoiceBox,
   goToPreviousAttackChoiceBox,
@@ -14,31 +28,27 @@ import {
 function initSteps() {
   initStepsRenderer(goToStepAndAttackChoiceBox);
 
-  ensureInitialSteps();
+  ensureInitialStepsGroups();
+  ensureNextStepsGroupForLoadedAttacks();
 
-  renderSteps();
+  renderAllStepsGroups();
 
   goToStepAndAttackChoiceBox(0, 0);
 }
 
 
-function addNextStepsGroup() {
-  const affectedGroupIndex = extendStepsToGroupBoundary();
-  renderStepsGroup(affectedGroupIndex);
-}
-
-
 export {
   initSteps,
-  addNextStepsGroup,
   getStepTypeFromIndex,
-  renderSteps,
+  renderStepsGroups,
   renderStepsGroup,
   renderStep,
+  rerenderRevealedStepsGroups,
   goToPreviousAttackChoiceBox,
   goToNextAttackChoiceBox,
   goToPreviousStep,
   goToNextStep,
   setCurrentAttack,
   clearAttack,
+  prepareStepsForGroupingChange,
 };

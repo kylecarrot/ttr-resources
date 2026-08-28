@@ -92,8 +92,6 @@ function decodeAttacks(attacksString) {
       encodingToAttackId.get(encoding) ?? null // Invalid encodings should be null
     );
   }
-  console.log('DECONDING');
-  console.log(attackIds);
 
   return attackIds;
 }

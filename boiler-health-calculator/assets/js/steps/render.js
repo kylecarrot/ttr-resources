@@ -23,15 +23,21 @@ function initStepsRenderer(onClick) {
 }
 
 
-function renderSteps() {
+function renderStepsGroups(groupCount) {
   const stepsPanel = document.querySelector('.steps-panel');
-  const groupCount = getExistingStepsGroups().length;
 
   stepsPanel.replaceChildren();
 
   for (let groupIndex = 0; groupIndex < groupCount; groupIndex++) {
     renderStepsGroup(groupIndex);
   }
+}
+
+
+function renderAllStepsGroups() {
+  renderStepsGroups(
+    getExistingStepsGroups().length
+  );
 }
 
 
@@ -179,11 +185,28 @@ function renderBoilerRoundAttackChoiceBoxesForToon(toonIndex) {
 }
 
 
+function getRevealedStepsGroupCount() {
+  return document.querySelectorAll('.steps-panel .steps-group').length;
+}
+
+
+function rerenderRevealedStepsGroups() {
+  const revealedGroupCount = getRevealedStepsGroupCount();
+
+  const existingGroupCount = getExistingStepsGroups().length;
+
+  renderStepsGroups(Math.min(revealedGroupCount, existingGroupCount));
+}
+
+
 export {
   initStepsRenderer,
-  renderSteps,
+  renderStepsGroups,
+  renderAllStepsGroups,
   renderStepsGroup,
   renderStep,
   renderAttackChoiceBox,
   renderBoilerRoundAttackChoiceBoxesForToon,
+  getRevealedStepsGroupCount,
+  rerenderRevealedStepsGroups,
 };

@@ -1,8 +1,8 @@
 const state = {
-  boilerStar: 1,                 // Default boiler star
-  meltdownStartRoundIndex: null, // Boiler round index of first meltdown round
+  boilerStar: 4,                            // Default boiler star
+  meltdownStartBoilerRoundIndex: undefined, // Boiler round index of first meltdown round
 
-  steps: [],                     // Navigatable steps
+  steps: [],                                // Navigatable steps
   currentToon: null,
   currentStep: null,
 };
@@ -41,6 +41,17 @@ function setStep(stepIndex, step) {
 }
 
 
+function removeStepsFromEnd(count) {
+  state.steps.splice(-count, count);
+
+  const lastStepIndex = state.steps.length - 1;
+
+  if (getCurrentStep() > lastStepIndex) {
+    setCurrentStep(lastStepIndex);
+  }
+}
+
+
 function getStepAttackIds(stepIndex) {
   return getStep(stepIndex).attackIds;
 }
@@ -71,18 +82,30 @@ function setCurrentToon(toonIndex) {
 }
 
 
+function getMeltdownStartBoilerRoundIndex() {
+  return state.meltdownStartBoilerRoundIndex;
+}
+
+
+function setMeltdownStartBoilerRoundIndex(boilerRoundIndex) {
+  state.meltdownStartBoilerRoundIndex = boilerRoundIndex;
+}
+
+
 export {
-  state,
   setBoilerStar,
   getBoilerStar,
   getStep,
   getSteps,
   addStep,
   setStep,
+  removeStepsFromEnd,
   getStepAttackIds,
   setStepAttackId,
   getCurrentStep,
   setCurrentStep,
   getCurrentToon,
   setCurrentToon,
+  getMeltdownStartBoilerRoundIndex,
+  setMeltdownStartBoilerRoundIndex,
 };

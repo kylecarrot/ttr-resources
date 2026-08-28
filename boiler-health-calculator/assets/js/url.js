@@ -41,7 +41,6 @@ function loadStateFromUrl() {
 
 function getBoilerStarFromUrl() {
   const starString = new URLSearchParams(window.location.search).get('star');
-  console.log(`starString ${starString}`);
   if (!starString) {
     return null;
   }
@@ -77,18 +76,13 @@ function loadAttacks(attacksString) {
   for (let attackIndex = 0; attackIndex < attackIds.length; attackIndex += attacksPerStep) {
     const stepIndex = attackIndex / attacksPerStep;
 
-    const stepAttackIds = attackIds.slice(
-      attackIndex,
-      attackIndex + attacksPerStep
-    );
+    const stepAttackIds = attackIds.slice(attackIndex, attackIndex + attacksPerStep);
 
     while (stepAttackIds.length < attacksPerStep) {
       stepAttackIds.push(null);
     }
 
-    const stepType = getStepTypeFromIndex(stepIndex);
-
-    addStep(stepType, stepAttackIds);
+    addStep(getStepTypeFromIndex(stepIndex), stepAttackIds);
   }
 }
 

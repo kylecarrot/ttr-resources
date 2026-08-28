@@ -1,4 +1,5 @@
 import {
+  getSteps,
   setStepAttackId,
   getCurrentStep,
   setCurrentStep,
@@ -6,17 +7,23 @@ import {
   setCurrentToon,
 } from '../state.js';
 import {
-  extendStepsIfNeeded,
+  completeLastStepsGroup,
+  addNextStepsGroup,
   isDefenseRound,
   updateSosToonInteraction,
   clearStepAttack,
+  getExistingStepsGroupFromStepIndex,
+  prepareStepsForGroupingChange,
 } from './steps.js';
 import {
   renderAttackChoiceBox,
   renderBoilerRoundAttackChoiceBoxesForToon,
-  renderStepsGroup,
+  renderStepsGroups,
+  getRevealedStepsGroupCount,
+  rerenderRevealedStepsGroups,
 } from './render.js';
 import { renderBoilerHealthBar } from '../boiler/health/render.js';
+import { updateMeltdownStartAfterAttackChange } from '../boiler/health/damage.js';
 import { updateAttacksUrl } from '../url.js';
 
 
@@ -90,10 +97,20 @@ function findNonDefenseStep(startStepIndex, direction) {
 
 
 function prepareStepForNavigation(stepIndex) {
-  const affectedGroupIndex = extendStepsIfNeeded(stepIndex);
+  while (stepIndex >= getSteps().length) {
+    const completedGroupIndex = completeLastStepsGroup();
 
-  if (affectedGroupIndex !== null) {
-    renderStepsGroup(affectedGroupIndex);
+    if (completedGroupIndex === null) {
+      addNextStepsGroup();
+    }
+  }
+
+  const group = getExistingStepsGroupFromStepIndex(stepIndex);
+
+  const revealedGroupCount = getRevealedStepsGroupCount();
+
+  if (group.groupIndex >= revealedGroupCount) {
+    renderStepsGroups(group.groupIndex + 1);
   }
 }
 
@@ -185,15 +202,29 @@ function setCurrentAttack(attackId) {
 
   setStepAttackId(currentStep, currentToon, attackId);
 
-  if (currentStep === 0) {
-    renderBoilerRoundAttackChoiceBoxesForToon(currentToon);
-  }
+  const meltdownStartChanged = updateMeltdownStartAfterAttackChange(currentStep);
+
+  updateStepsAfterAttackChange(currentStep, currentToon, meltdownStartChanged);
 
   renderBoilerHealthBar();
-
   updateAttacksUrl();
 
-  goToNextAttackChoiceBox(); // Handles re-rendering
+  goToNextAttackChoiceBox();
+}
+
+
+function updateStepsAfterAttackChange(stepIndex, toonIndex, meltdownStartChanged) {
+  if (meltdownStartChanged) {
+    prepareStepsForGroupingChange();
+    rerenderRevealedStepsGroups();
+    return;
+  }
+
+  renderAttackChoiceBox(stepIndex, toonIndex);
+
+  if (stepIndex === 0) {
+    renderBoilerRoundAttackChoiceBoxesForToon(toonIndex);
+  }
 }
 
 
@@ -203,14 +234,11 @@ function clearAttack() {
 
   clearStepAttack(currentStep, currentToon);
 
-  renderAttackChoiceBox(currentStep, currentToon);
+  const meltdownStartChanged = updateMeltdownStartAfterAttackChange(currentStep);
 
-  if (currentStep === 0) {
-    renderBoilerRoundAttackChoiceBoxesForToon(currentToon);
-  }
+  updateStepsAfterAttackChange(currentStep, currentToon, meltdownStartChanged);
 
   renderBoilerHealthBar();
-
   updateAttacksUrl();
 }
 

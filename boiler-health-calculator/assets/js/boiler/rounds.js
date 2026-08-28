@@ -1,5 +1,4 @@
-import { getSteps } from '../state.js';
-import { getStepIndexFromBoilerRoundIndex } from '../steps/steps.js';
+import { getSteps, getMeltdownStartBoilerRoundIndex } from '../state.js';
 
 
 const BOILER_ROUND_PHASE_DAMAGE_PERCENT_BONUSES = {
@@ -18,14 +17,30 @@ function getBoilerRoundSteps() {
 
 
 function getBoilerPhaseFromBoilerRoundIndex(boilerStar, boilerRoundIndex) {
+  const meltdownStartBoilerRoundIndex = getMeltdownStartBoilerRoundIndex();
+
+  if (
+    boilerStar === 4 &&
+    Number.isInteger(meltdownStartBoilerRoundIndex) &&
+    boilerRoundIndex >= meltdownStartBoilerRoundIndex
+  ) {
+    return 'meltdown';
+  }
+
+  return getBoilerPhaseIgnoringMeltdownFromBoilerRoundIndex(boilerStar, boilerRoundIndex);
+}
+
+
+function getBoilerPhaseIgnoringMeltdownFromBoilerRoundIndex(boilerStar, boilerRoundIndex) {
   let cycleIndex;
 
   if (boilerStar !== 4) {
     if (boilerRoundIndex < 2) {
       return 'neutral';
     }
+
     cycleIndex = (boilerRoundIndex - 2) % 6;
-  } else {  // 4 star boiler does not have a neutral phase
+  } else { // 4 star boiler starts fired up
     cycleIndex = boilerRoundIndex % 6;
   }
 
@@ -38,6 +53,11 @@ function getBoilerRoundIndexFromStepIndex(stepIndex) {
 }
 
 
+function getStepIndexFromBoilerRoundIndex(boilerRoundIndex) {
+  return boilerRoundIndex + 1;
+}
+
+
 function getBoilerRoundPhaseDamagePercentBonus(boilerRoundPhase) {
   return BOILER_ROUND_PHASE_DAMAGE_PERCENT_BONUSES[boilerRoundPhase];
 }
@@ -45,6 +65,7 @@ function getBoilerRoundPhaseDamagePercentBonus(boilerRoundPhase) {
 export {
   getBoilerRoundSteps,
   getBoilerPhaseFromBoilerRoundIndex,
+  getBoilerPhaseIgnoringMeltdownFromBoilerRoundIndex,
   getBoilerRoundIndexFromStepIndex,
   getBoilerRoundPhaseDamagePercentBonus,
 };
