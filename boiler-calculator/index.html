@@ -1,0 +1,128 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+
+    <title>Boiler Calculator</title>
+
+    <script type="module" crossorigin src="../assets/boilerCalculator-B88vd2gV.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/boilerCalculator-81t-Zif9.css">
+  </head>
+
+  <body>
+    <div class="app-viewport">
+      <div class="app-scaler">
+        <main class="app">
+          <div class="app-content">
+            <section class="steps-column">
+              <div class="steps-column-content">
+                <div class="steps-column-steps">
+                  <!--  generated steps groups -->
+                </div>
+              </div>
+            </section>
+
+            <div class="calculator-column">
+              <div class="app-tools">
+                <button class="ui-icon-button app-tool" data-action="help">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <path d="M12 17h.01" />
+                  </svg>
+                </button>
+
+                <button class="ui-icon-button app-tool" data-action="toggle-theme">
+                  <!-- moon icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    class="ui-icon ui-icon-moon"
+                  >
+                    <path
+                      d="M20.985 12.486a9 9 0 1 1-9.473-9.472
+                      c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268
+                      c.344-.215.825-.004.803.401"
+                    />
+                  </svg>
+                  <!-- sun icon -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    class="ui-icon ui-icon-sun"
+                  >
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2" />
+                    <path d="M12 20v2" />
+                    <path d="m4.93 4.93 1.41 1.41" />
+                    <path d="m17.66 17.66 1.41 1.41" />
+                    <path d="M2 12h2" />
+                    <path d="M20 12h2" />
+                    <path d="m6.34 17.66-1.41 1.41" />
+                    <path d="m19.07 4.93-1.41 1.41" />
+                  </svg>
+                </button>
+              </div>
+
+              <section class="boiler-panel">
+                <div class="boiler-panel-content">
+                  <div class="boiler-panel-actions boiler-panel-actions-left">
+                    <button class="ui-icon-button boiler-action" data-action="pop-out-health-bar">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
+                        <path d="M15 3h6v6" />
+                        <path d="M10 14 21 3" />
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="boiler-panel-status">
+                    <div class="boiler-health-bar">
+                      <div class="boiler-health-layer background"></div>
+                      <div class="boiler-health-layer active"></div>
+                      <span class="boiler-health-number"></span>
+                    </div>
+
+                    <div class="star-selector">
+                      <!-- generated stars -->
+                    </div>
+                  </div>
+
+                  <div class="boiler-panel-actions boiler-panel-actions-right">
+                    <button class="ui-icon-button boiler-action reset-button" data-action="reset">
+                      <!-- reset icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
+                      </svg>
+                      <svg class="reset-progress">
+                        <path class="reset-progress-stroke" pathLength="100" />
+                      </svg>
+                    </button>
+
+                    <button class="ui-icon-button boiler-action" data-action="copy-url">
+                      <!-- copy url icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <section class="attack-grid">
+                <div class="attack-grid-content">
+                  <div class="attack-grid-rows"></div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
