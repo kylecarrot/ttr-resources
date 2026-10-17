@@ -8,8 +8,8 @@
 
     <title>Boiler Calculator</title>
 
-    <script type="module" crossorigin src="../assets/boilerCalculator-DUWs1nEq.js"></script>
-    <link rel="stylesheet" crossorigin href="../assets/boilerCalculator-DdZ7vGPI.css">
+    <script type="module" crossorigin src="../assets/boilerCalculator-DTVnvW9Y.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/boilerCalculator-C_OBM7OQ.css">
   </head>
 
   <body>
@@ -17,15 +17,18 @@
       <div class="app-scaler">
         <main class="app">
           <div class="app-content">
+            <!-- Steps -->
             <section class="steps-column">
               <div class="steps-column-content">
                 <div class="steps-column-steps">
-                  <!--  generated steps groups -->
+                  <!-- Generated steps groups -->
                 </div>
               </div>
             </section>
 
+            <!-- Calculator -->
             <div class="calculator-column">
+              <!-- App tools -->
               <div class="app-tools">
                 <button class="ui-icon-button app-tool" data-action="help">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
@@ -36,7 +39,6 @@
                 </button>
 
                 <button class="ui-icon-button app-tool" data-action="toggle-theme">
-                  <!-- moon icon -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -48,7 +50,6 @@
                       c.344-.215.825-.004.803.401"
                     />
                   </svg>
-                  <!-- sun icon -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -67,6 +68,7 @@
                 </button>
               </div>
 
+              <!-- Boiler panel -->
               <section class="boiler-panel">
                 <div class="boiler-panel-content">
                   <div class="boiler-panel-actions boiler-panel-actions-left">
@@ -80,20 +82,21 @@
                   </div>
 
                   <div class="boiler-panel-status">
+                    <!-- Boiler health bar -->
                     <div class="boiler-health-bar">
                       <div class="boiler-health-layer background"></div>
                       <div class="boiler-health-layer active"></div>
                       <span class="boiler-health-number"></span>
                     </div>
 
+                    <!-- Boiler stars -->
                     <div class="star-selector">
-                      <!-- generated stars -->
+                      <!-- Generated stars -->
                     </div>
                   </div>
 
                   <div class="boiler-panel-actions boiler-panel-actions-right">
                     <button class="ui-icon-button boiler-action reset-button" data-action="reset">
-                      <!-- reset icon -->
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
                         <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
                         <path d="M3 3v5h5" />
@@ -104,7 +107,6 @@
                     </button>
 
                     <button class="ui-icon-button boiler-action" data-action="copy-url">
-                      <!-- copy url icon -->
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="ui-icon">
                         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
                         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
@@ -114,11 +116,60 @@
                 </div>
               </section>
 
+              <!-- Attack grid -->
               <section class="attack-grid">
                 <div class="attack-grid-content">
                   <div class="attack-grid-rows"></div>
                 </div>
               </section>
+
+              <div class="calculator-utilities">
+                <section class="utility-panel">
+                  <div class="utility-panel-content"></div>
+                </section>
+
+                <!-- Boiler attack damages -->
+                <section class="utility-panel boiler-attack-damages">
+                  <div class="utility-panel-content boiler-attack-damages-content">
+                    <table class="boiler-attack-damages-table">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="attack-column">Attack</th>
+                          <th scope="col" class="base-column">Base</th>
+                          <th scope="col" class="fired-up-column">Fired Up</th>
+                          <th scope="col" class="burn-column">+ Burn</th>
+                          <th scope="col" class="meltdown-column meltdown-header" hidden>
+                            <span class="meltdown-header-content">
+                              <span>+ Meltdown</span>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                class="meltdown-info-icon"
+                              >
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
+                              </svg>
+                            </span>
+                          </th>
+                        </tr>
+                      </thead>
+
+                      <tbody class="boiler-attack-damages-rows"></tbody>
+                    </table>
+
+                    <template id="boiler-attack-damage-row">
+                      <tr class="boiler-attack-damage-row">
+                        <th scope="row" class="attack-column attack-name"></th>
+                        <td class="base-column base-damage"></td>
+                        <td class="fired-up-column fired-up-damage"></td>
+                        <td class="burn-column burn-damage"></td>
+                        <td class="meltdown-column meltdown-damage" hidden></td>
+                      </tr>
+                    </template>
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </main>
